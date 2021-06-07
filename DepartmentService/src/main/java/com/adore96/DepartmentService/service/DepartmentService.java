@@ -22,7 +22,6 @@ public class DepartmentService {
     @Autowired
     DepartmentRepository departmentRepository;
 
-
     public List<Department> departmentList() {
         log.info("DepartmentList Service Method");
 
