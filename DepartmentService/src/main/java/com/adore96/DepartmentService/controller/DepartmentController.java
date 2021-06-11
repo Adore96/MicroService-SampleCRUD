@@ -8,6 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * @author kasun_k ON 5/30/21
  * @project DepartmentService
@@ -25,32 +27,32 @@ public class DepartmentController {
     DepartmentRepository departmentRepository;
 
     @PostMapping("/")
-    public Department departmentList() {
-        log.info("using slf4j");
-
-        return null;
+    public List<Department> departmentList() {
+        log.info("departmentList Controller");
+        List<Department> departmentList = departmentService.departmentList();
+        return departmentList;
     }
 
-    @GetMapping("/get-department/{id}")
+    @GetMapping("/{id}")
     public Department findDepartmentById(@PathVariable int departmentid) {
         log.info("findDepartmentById Controller");
         Department department = new Department();
-
         departmentService.findDepartmentById(departmentid);
-        return null;
+        return department;
     }
 
-    @GetMapping("/save-department")
-    public void saveDepartment(@RequestBody DepartmentInputBean departmentInputBean) {
+    @GetMapping("/")
+    public String saveDepartment(@RequestBody DepartmentInputBean departmentInputBean) {
         log.info("SaveDepartment Controller");
-        Department department = new Department();
-        department = departmentService.saveDepartment(departmentInputBean);
+        Department department = departmentService.saveDepartment(departmentInputBean);
 
         if (department != null) {
-            departmentRepository.save(department);
             log.info("Department saved successfully");
+            departmentRepository.save(department);
+            return "saved";
         } else {
             log.info("Unable to save the department");
+            return "";
         }
     }
 }
