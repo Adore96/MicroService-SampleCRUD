@@ -32,13 +32,11 @@ public class DepartmentController {
     }
 
     @GetMapping("/get-department/{id}")
-    public Department findDepartmentById(@PathVariable String departmentid) {
+    public Department findDepartmentById(@PathVariable int departmentid) {
         log.info("findDepartmentById Controller");
         Department department = new Department();
 
         departmentService.findDepartmentById(departmentid);
-
-
         return null;
     }
 

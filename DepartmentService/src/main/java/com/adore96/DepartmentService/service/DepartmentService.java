@@ -6,7 +6,6 @@ import com.adore96.DepartmentService.repository.DepartmentRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -24,14 +23,14 @@ public class DepartmentService {
 
     public List<Department> departmentList() {
         log.info("DepartmentList Service Method");
-
-        return null;
+        List<Department> departmentList = departmentRepository.findAll();
+        return departmentList;
     }
 
-    public Department findDepartmentById(@PathVariable String departmentid) {
+    public Department findDepartmentById(int departmentid) {
         log.info("FindDepartmentById Service Method");
-
-        return null;
+        Department department = departmentRepository.findById(departmentid).orElse(null);
+        return department;
     }
 
     public Department saveDepartment(DepartmentInputBean departmentInputBean) {
@@ -45,7 +44,6 @@ public class DepartmentService {
         } else {
             department = null;
         }
-
         return department;
     }
 }
