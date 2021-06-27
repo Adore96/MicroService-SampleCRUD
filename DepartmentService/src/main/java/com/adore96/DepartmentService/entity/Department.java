@@ -15,7 +15,6 @@ import javax.persistence.Id;
  * @project DepartmentService
  */
 
-
 @Getter
 @Setter
 @AllArgsConstructor

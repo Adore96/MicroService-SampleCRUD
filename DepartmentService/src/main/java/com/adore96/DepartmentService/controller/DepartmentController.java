@@ -15,8 +15,8 @@ import java.util.List;
  * @project DepartmentService
  */
 
-@RestController
 @Slf4j
+@RestController
 @RequestMapping("/departments")
 public class DepartmentController {
 
