@@ -49,10 +49,10 @@ public class DepartmentController {
         if (department != null) {
             log.info("Department saved successfully");
             departmentRepository.save(department);
-            return "saved";
+            return "success";
         } else {
             log.info("Unable to save the department");
-            return "";
+            return "fail";
         }
     }
 }
