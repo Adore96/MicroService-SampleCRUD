@@ -4,6 +4,7 @@ import com.adore96.UserService.bean.UserInputBean;
 import com.adore96.UserService.entity.User;
 import com.adore96.UserService.repository.UserRepository;
 import com.adore96.UserService.service.UserService;
+import com.adore96.UserService.valueobject.ResponseTypeValueObject;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -33,15 +34,15 @@ public class UserController {
         return userList;
     }
 
-    @GetMapping("/{id}")
-    public User findUserById(@PathVariable int id) {
-        log.info("findUserById Controller");
-        User user = new User();
-        userService.findUserById(id);
-        return user;
-    }
+//    @GetMapping("/get-user/{id}")
+//    public User findUserById(@PathVariable int id) {
+//        log.info("findUserById Controller");
+//        User user = new User();
+//        userService.findUserById(id);
+//        return user;
+//    }
 
-    @GetMapping("/")
+    @GetMapping("/save-user/")
     public String saveUser(@RequestBody UserInputBean userInputBean) {
         log.info("saveUser Controller");
         String status;
@@ -52,5 +53,12 @@ public class UserController {
         } else {
             return "fail";
         }
+    }
+
+    @GetMapping("/get-user/{id}")
+    public ResponseTypeValueObject getUserwithDepartment(@PathVariable int id) {
+        log.info("getUserwithDepartment Controller");
+
+        return userService.getUserwithDepartment(id);
     }
 }

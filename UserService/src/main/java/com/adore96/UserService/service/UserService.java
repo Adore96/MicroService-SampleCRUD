@@ -3,9 +3,12 @@ package com.adore96.UserService.service;
 import com.adore96.UserService.bean.UserInputBean;
 import com.adore96.UserService.entity.User;
 import com.adore96.UserService.repository.UserRepository;
+import com.adore96.UserService.valueobject.Department;
+import com.adore96.UserService.valueobject.ResponseTypeValueObject;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
@@ -19,7 +22,10 @@ import java.util.List;
 public class UserService {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
+
+    @Autowired
+    private RestTemplate restTemplate;
 
     public List<User> userList() {
         log.info("userList Service Method");
@@ -41,7 +47,7 @@ public class UserService {
             user.setUsername(userInputBean.getUsername());
             user.setUserpassword(userInputBean.getUserpassword());
             user.setUsertelephone(userInputBean.getUsertelephone());
-            user.setDepartmentcode(userInputBean.getDepartmentcode());
+            user.setDepartmentid(userInputBean.getDepartmentcode());
 
 
             userRepository.save(user);
@@ -49,5 +55,17 @@ public class UserService {
         } else {
             return "fail";
         }
+    }
+
+    public ResponseTypeValueObject getUserwithDepartment(int id) {
+        log.info("getUserwithDepartment Service Method");
+        User user = userRepository.findById(id).orElse(null);
+        ResponseTypeValueObject responseTypeValueObject = new ResponseTypeValueObject();
+
+        Department department = restTemplate.getForObject("http://localhost:8090/departments/get-department/" + user.getDepartmentid(), Department.class);
+
+        responseTypeValueObject.setDepartment(department);
+        responseTypeValueObject.setUser(user);
+        return responseTypeValueObject;
     }
 }

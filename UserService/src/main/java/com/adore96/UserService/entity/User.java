@@ -26,5 +26,5 @@ public class User {
     String username;
     String userpassword;
     String usertelephone;
-    String departmentcode;
+    String departmentid;
 }

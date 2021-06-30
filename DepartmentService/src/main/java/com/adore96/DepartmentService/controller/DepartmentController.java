@@ -26,22 +26,21 @@ public class DepartmentController {
     @Autowired
     DepartmentRepository departmentRepository;
 
-    @PostMapping("/")
+    @GetMapping("/")
     public List<Department> departmentList() {
         log.info("departmentList Controller");
         List<Department> departmentList = departmentService.departmentList();
         return departmentList;
     }
 
-    @GetMapping("/{id}")
-    public Department findDepartmentById(@PathVariable int departmentid) {
+    @GetMapping("/get-department/{id}")
+    public Department findDepartmentById(@PathVariable Integer id) {
         log.info("findDepartmentById Controller");
-        Department department = new Department();
-        departmentService.findDepartmentById(departmentid);
+        Department department = departmentService.findDepartmentById(id);
         return department;
     }
 
-    @GetMapping("/")
+    @PostMapping("/save-department")
     public String saveDepartment(@RequestBody DepartmentInputBean departmentInputBean) {
         log.info("SaveDepartment Controller");
         Department department = departmentService.saveDepartment(departmentInputBean);
