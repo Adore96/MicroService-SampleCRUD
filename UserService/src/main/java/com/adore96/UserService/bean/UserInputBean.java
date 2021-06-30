@@ -20,4 +20,5 @@ public class UserInputBean {
     String username;
     String userpassword;
     String usertelephone;
+    String departmentcode;
 }

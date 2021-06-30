@@ -38,9 +38,9 @@ public class DepartmentService {
         log.info("SaveDepartment Service Method");
         if (departmentInputBean != null) {
             department.setDepartmentid(departmentInputBean.getDepartmentid());
-            department.setDepartmentcode(department.getDepartmentcode());
-            department.setDepartmentname(department.getDepartmentname());
-            department.setDepartmentadress(department.getDepartmentadress());
+            department.setDepartmentcode(departmentInputBean.getDepartmentcode());
+            department.setDepartmentname(departmentInputBean.getDepartmentname());
+            department.setDepartmentadress(departmentInputBean.getDepartmentadress());
         } else {
             department = null;
         }

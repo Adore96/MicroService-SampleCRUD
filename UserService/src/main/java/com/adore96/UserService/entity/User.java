@@ -1,9 +1,6 @@
 package com.adore96.UserService.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,6 +16,7 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @Setter
 @Getter
+@Data
 @Entity
 public class User {
 
@@ -28,4 +26,5 @@ public class User {
     String username;
     String userpassword;
     String usertelephone;
+    String departmentcode;
 }
