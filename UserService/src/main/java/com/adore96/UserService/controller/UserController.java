@@ -27,7 +27,7 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
 
-    @PostMapping("/")
+    @GetMapping("/")
     public List<User> userList() {
         log.info("userList Controller");
         List<User> userList = userService.userList();

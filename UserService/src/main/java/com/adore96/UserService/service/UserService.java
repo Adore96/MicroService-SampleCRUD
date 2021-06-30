@@ -62,7 +62,7 @@ public class UserService {
         User user = userRepository.findById(id).orElse(null);
         ResponseTypeValueObject responseTypeValueObject = new ResponseTypeValueObject();
 
-        Department department = restTemplate.getForObject("http://localhost:8090/departments/get-department/" + user.getDepartmentid(), Department.class);
+        Department department = restTemplate.getForObject("http://DEPARTMENT-SERVICE/departments/get-department/" + user.getDepartmentid(), Department.class);
 
         responseTypeValueObject.setDepartment(department);
         responseTypeValueObject.setUser(user);
