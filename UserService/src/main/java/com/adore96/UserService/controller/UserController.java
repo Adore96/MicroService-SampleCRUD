@@ -34,14 +34,6 @@ public class UserController {
         return userList;
     }
 
-//    @GetMapping("/get-user/{id}")
-//    public User findUserById(@PathVariable int id) {
-//        log.info("findUserById Controller");
-//        User user = new User();
-//        userService.findUserById(id);
-//        return user;
-//    }
-
     @GetMapping("/save-user/")
     public String saveUser(@RequestBody UserInputBean userInputBean) {
         log.info("saveUser Controller");
